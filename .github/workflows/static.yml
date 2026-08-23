@@ -1,0 +1,50 @@
+# GitHub Pages deployment for Aniruth Portfolio
+
+name: Deploy Aniruth Portfolio
+
+on:
+  push:
+    branches:
+      - pro-development
+
+  workflow_dispatch:
+
+# Required permissions for GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Prevent multiple deployments from running simultaneously
+concurrency:
+  group: "github-pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy Portfolio
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Configure GitHub Pages
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      # Upload ONLY the portfolio folder
+      - name: Upload Portfolio
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './aniruth-portfolio'
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
