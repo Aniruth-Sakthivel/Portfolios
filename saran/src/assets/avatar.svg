@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="52%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <clipPath id="round"><rect width="64" height="64" rx="16"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#round)">
+    <rect width="64" height="64" fill="url(#bg)"/>
+
+    <!-- shoulders / shirt -->
+    <path d="M12 64 C12 50 22 45 32 45 C42 45 52 50 52 64 Z" fill="#eef1fb"/>
+    <path d="M32 45 L28.5 52 L32 55 L35.5 52 Z" fill="#d7ddf2"/>
+
+    <!-- neck -->
+    <rect x="28" y="37" width="8" height="10" rx="3.5" fill="#eab88c"/>
+
+    <!-- ears -->
+    <circle cx="19.4" cy="30" r="2.6" fill="#f3c7a2"/>
+    <circle cx="44.6" cy="30" r="2.6" fill="#f3c7a2"/>
+
+    <!-- head -->
+    <circle cx="32" cy="29" r="12.6" fill="#f3c7a2"/>
+
+    <!-- hair -->
+    <path d="M19.2 31 C19.2 15.5 44.8 15.5 44.8 31 C44.8 23 40 18.5 32 18.5 C24 18.5 19.2 23 19.2 31 Z" fill="#2a2540"/>
+    <path d="M19.2 31 C18.5 26 19 22 20.5 20 C20 25 20.6 29 21 31 Z" fill="#2a2540"/>
+    <path d="M44.8 31 C45.5 26 45 22 43.5 20 C44 25 43.4 29 43 31 Z" fill="#2a2540"/>
+
+    <!-- glasses -->
+    <g fill="rgba(255,255,255,0.18)" stroke="#2a2540" stroke-width="1.4">
+      <circle cx="26.8" cy="30" r="3.4"/>
+      <circle cx="37.2" cy="30" r="3.4"/>
+    </g>
+    <path d="M30.2 30 H33.8" stroke="#2a2540" stroke-width="1.4" fill="none"/>
+
+    <!-- eyes -->
+    <circle cx="26.8" cy="30" r="1.25" fill="#33281f"/>
+    <circle cx="37.2" cy="30" r="1.25" fill="#33281f"/>
+
+    <!-- smile -->
+    <path d="M27 36.4 Q32 40.4 37 36.4" stroke="#a9603c" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>
