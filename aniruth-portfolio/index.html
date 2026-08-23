@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en" data-page="home">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aniruth Sakthivel — Frontend Developer</title>
+    <meta
+      name="description"
+      content="Aniruth Sakthivel is a frontend developer in Coimbatore building fast, considered interfaces for CRM, HRMS, EMR and POS products with React, TypeScript and Redux."
+    />
+    <meta name="author" content="Aniruth Sakthivel" />
+    <meta name="theme-color" content="#faf9f6" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Aniruth Sakthivel — Frontend Developer" />
+    <meta
+      property="og:description"
+      content="Frontend developer building fast, considered interfaces for complex products."
+    />
+
+    <!-- Theme is resolved before first paint to avoid a flash. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('pf-theme');
+          if (stored === 'light' || stored === 'dark') {
+            document.documentElement.setAttribute('data-theme', stored);
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap"
+    />
+
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/typography.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/sections.css" />
+    <link rel="stylesheet" href="assets/css/mockups.css" />
+
+    <script src="assets/js/data/site.js" defer></script>
+    <script src="assets/js/data/projects.js" defer></script>
+    <script src="assets/js/data/experience.js" defer></script>
+    <script src="assets/js/data/skills.js" defer></script>
+    <script src="assets/js/modules/render.js" defer></script>
+    <script src="assets/js/modules/mockups.js" defer></script>
+    <script src="assets/js/modules/theme.js" defer></script>
+    <script src="assets/js/modules/nav.js" defer></script>
+    <script src="assets/js/modules/reveal.js" defer></script>
+    <script src="assets/js/modules/counters.js" defer></script>
+    <script src="assets/js/modules/cursor.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+  </head>
+
+  <body class="page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ================= Navigation ================= -->
+    <header class="nav" data-nav>
+      <div class="container nav__inner">
+        <a class="nav__brand" href="#top">
+          <span class="nav__brand-mark" aria-hidden="true">AS</span>
+          <span data-text="name">Aniruth Sakthivel</span>
+          <span class="nav__brand-role" data-text="role">Frontend Developer</span>
+        </a>
+
+        <nav class="nav__menu" aria-label="Sections">
+          <a class="nav__link" href="#work">Work</a>
+          <a class="nav__link" href="#about">About</a>
+          <a class="nav__link" href="#experience">Experience</a>
+          <a class="nav__link" href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav__actions">
+          <button
+            class="icon-btn theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Switch to dark theme"
+          >
+            <span class="sky" aria-hidden="true">
+              <span class="sky__star"></span>
+              <span class="sky__star"></span>
+              <span class="sky__star"></span>
+              <span class="sky__glow"></span>
+              <span class="sky__body sky__sun">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="4.4" fill="currentColor" />
+                  <path
+                    d="M12 2.8v2.1M12 19.1v2.1M2.8 12h2.1M19.1 12h2.1M5.5 5.5l1.5 1.5M17 17l1.5 1.5M18.5 5.5 17 7M7 17l-1.5 1.5"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+              <span class="sky__body sky__moon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M20.4 14.8A8.6 8.6 0 0 1 9.2 3.6a8.6 8.6 0 1 0 11.2 11.2Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+            </span>
+          </button>
+
+          <a class="btn btn--primary nav__cta" href="#contact">Let&rsquo;s Talk</a>
+
+          <button
+            class="icon-btn nav__toggle"
+            type="button"
+            data-nav-toggle
+            aria-expanded="false"
+            aria-controls="nav-panel"
+            aria-label="Open menu"
+          >
+            <span class="nav__toggle-glyph" aria-hidden="true"><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav__panel" id="nav-panel" data-nav-panel>
+        <div class="container">
+          <a class="nav__panel-link" href="#work">Work <span>01</span></a>
+          <a class="nav__panel-link" href="#about">About <span>02</span></a>
+          <a class="nav__panel-link" href="#experience">Experience <span>03</span></a>
+          <a class="nav__panel-link" href="#contact">Contact <span>04</span></a>
+          <div class="nav__panel-foot">
+            <a class="btn btn--primary" href="#contact">Let&rsquo;s Talk</a>
+            <a class="btn btn--ghost" href="assets/docs/Aniruth-Sakthivel-CV.pdf" target="_blank" rel="noopener">
+              Résumé
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <noscript>
+      <div class="container" style="padding-block: var(--s-6); border-bottom: 1px solid var(--rule)">
+        <p class="t-small t-muted">
+          The project, experience and skills lists need JavaScript. Everything is also in the
+          <a class="link" href="assets/docs/Aniruth-Sakthivel-CV.pdf">résumé (PDF)</a>, or email
+          <a class="link" href="mailto:aniruthsakthivel.dev@gmail.com">aniruthsakthivel.dev@gmail.com</a>.
+        </p>
+      </div>
+    </noscript>
+
+    <main id="main">
+      <!-- ================= Hero ================= -->
+      <section class="hero" id="top">
+        <div class="container">
+          <div class="hero__top">
+            <p class="status" data-reveal="fade-in">
+              <span class="status__dot" aria-hidden="true"></span>
+              <span data-text="availability">Available for selected projects</span>
+            </p>
+            <p class="t-label" data-reveal="fade-in" data-delay="80" data-text="location">
+              Coimbatore, Tamil Nadu, India
+            </p>
+          </div>
+
+          <p class="hero__intro" data-reveal="fade-up" data-delay="120" data-text="hero.intro">
+            Hello, I&rsquo;m Aniruth Sakthivel
+          </p>
+
+          <h1 class="t-display hero__headline" data-reveal="text" data-delay="180">
+            <span data-headline>I design and build digital products that feel as good as they work.</span>
+          </h1>
+
+          <div class="hero__lower">
+            <div>
+              <p class="t-lead hero__desc" data-reveal="fade-up" data-delay="320" data-text="hero.description"></p>
+              <div class="hero__actions" data-reveal="fade-up" data-delay="400">
+                <a class="btn btn--primary" href="#work">
+                  View Selected Work
+                  <svg class="btn__arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M2.5 7h9M8 3.5 11.5 7 8 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+                <a class="btn btn--ghost" href="#contact">Let&rsquo;s Talk</a>
+              </div>
+            </div>
+
+            <div data-reveal="fade-up" data-delay="460">
+              <dl class="hero__meta" data-hero-meta></dl>
+              <p class="hero__scroll t-label">Scroll to explore</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Selected work ================= -->
+      <section class="section work" id="work" aria-labelledby="work-title">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-head__index" data-reveal="fade-in">01 &mdash; Work</p>
+            <div class="section-head__body">
+              <h2 class="t-h1" id="work-title" data-reveal="fade-up">Selected Work</h2>
+              <p class="t-lead" data-reveal="fade-up">
+                A collection of products, interfaces and experiments I&rsquo;ve designed and built.
+              </p>
+            </div>
+          </div>
+
+          <div class="work__list" data-projects></div>
+        </div>
+      </section>
+
+      <!-- ================= About ================= -->
+      <section class="section about" id="about" aria-labelledby="about-title">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-head__index" data-reveal="fade-in">02 &mdash; About</p>
+          </div>
+
+          <div class="about__grid">
+            <div class="about__aside">
+              <h2 class="t-h1 about__heading" id="about-title" data-reveal="fade-up" data-text="about.heading">
+                A little about me.
+              </h2>
+              <figure class="plate" data-reveal="image" data-plate></figure>
+            </div>
+
+            <div class="about__prose prose" data-reveal="fade-up" data-about-prose></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Expertise ================= -->
+      <section class="section expertise" id="expertise" aria-labelledby="expertise-title">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-head__index" data-reveal="fade-in">03 &mdash; Expertise</p>
+            <div class="section-head__body">
+              <h2 class="t-h1" id="expertise-title" data-reveal="fade-up">What I work with</h2>
+              <p class="t-lead" data-reveal="fade-up">
+                A focused toolkit, kept deliberately small so it stays sharp.
+              </p>
+            </div>
+          </div>
+
+          <div class="expertise__grid" data-skills></div>
+        </div>
+      </section>
+
+      <!-- ================= Experience ================= -->
+      <section class="section experience" id="experience" aria-labelledby="experience-title">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-head__index" data-reveal="fade-in">04 &mdash; Experience</p>
+            <div class="section-head__body">
+              <h2 class="t-h1" id="experience-title" data-reveal="fade-up">Where I&rsquo;ve worked</h2>
+              <p class="t-lead" data-reveal="fade-up">
+                Two years of production work, mostly in dense enterprise and healthcare software.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline" data-experience></div>
+
+          <div class="subsection__grid subsection">
+            <div>
+              <h3 class="t-h3 subsection__title" data-reveal="fade-up">Education</h3>
+              <div data-education></div>
+            </div>
+            <div>
+              <h3 class="t-h3 subsection__title" data-reveal="fade-up">Certifications</h3>
+              <div data-certifications></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Impact ================= -->
+      <section class="section impact" id="impact" aria-labelledby="impact-title">
+        <div class="container">
+          <h2 class="sr-only" id="impact-title">By the numbers</h2>
+          <div class="impact__grid" data-impact></div>
+        </div>
+      </section>
+
+      <!-- ================= Contact ================= -->
+      <section class="section contact" id="contact" aria-labelledby="contact-title">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-head__index" data-reveal="fade-in">05 &mdash; Contact</p>
+          </div>
+
+          <div class="contact__grid">
+            <div>
+              <h2 class="t-h1 contact__heading" id="contact-title" data-reveal="fade-up" data-text="contact.heading">
+                Have something worth building?
+              </h2>
+              <p class="t-lead contact__desc" data-reveal="fade-up" data-text="contact.description"></p>
+              <div class="contact__actions" data-reveal="fade-up">
+                <a class="btn btn--primary" data-contact-cta href="#">
+                  <span data-text="contact.ctaLabel">Start a Conversation</span>
+                  <svg class="btn__arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M2.5 7h9M8 3.5 11.5 7 8 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </div>
+              <dl class="about__facts" data-contact-details></dl>
+            </div>
+
+            <div data-reveal="fade-up">
+              <div class="contact__links" data-contact-links></div>
+              <p class="contact__note">Usually replies within a day.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= Footer ================= -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div>
+            <p class="footer__name" data-text="name">Aniruth Sakthivel</p>
+            <p class="footer__desc" data-text="footer.description"></p>
+          </div>
+          <div class="footer__links" data-footer-links></div>
+        </div>
+
+        <div class="footer__bottom">
+          <p>&copy; <span data-year>2026</span> <span data-text="name">Aniruth Sakthivel</span>. All rights reserved.</p>
+          <a class="footer__top-link t-small" href="#top">
+            Back to top
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M6 10V2M2.5 5.5 6 2l3.5 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

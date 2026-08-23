@@ -1,0 +1,381 @@
+/* =========================================================================
+   Project mockups — abstract interfaces drawn in CSS, no images.
+   Everything is sized in container query units so a single markup tree
+   scales cleanly from a 320px card to a full-bleed plate.
+   ========================================================================= */
+
+.mk-frame {
+  container-type: inline-size;
+  position: absolute;
+  inset: 0;
+  background: var(--bg-raised);
+}
+
+.mk {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  gap: 2cqw;
+  padding: 2.6cqw;
+  font-size: 0;
+}
+
+/* --- Primitives ---------------------------------------------------------- */
+
+.mk-rail {
+  flex: 0 0 12cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6cqw;
+  padding: 1.6cqw;
+  border-radius: 1cqw;
+  background: var(--bg-sunken);
+  border: 1px solid var(--rule);
+}
+
+.mk-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8cqw;
+  min-width: 0;
+}
+
+.mk-panel {
+  border: 1px solid var(--rule);
+  border-radius: 1cqw;
+  background: var(--bg-sunken);
+  padding: 1.8cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4cqw;
+  min-width: 0;
+}
+
+.mk-row {
+  display: flex;
+  align-items: center;
+  gap: 1.2cqw;
+  min-width: 0;
+}
+
+.mk-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2cqw;
+  min-width: 0;
+  flex: 1;
+}
+
+/* A line of "text". Width comes from --w so the JS stays declarative. */
+.mk-bar {
+  width: var(--w, 100%);
+  height: 1.1cqw;
+  border-radius: 0.6cqw;
+  background: var(--text);
+  opacity: 0.16;
+  flex: none;
+}
+
+.mk-bar--strong {
+  opacity: 0.42;
+  height: 1.5cqw;
+}
+
+.mk-bar--accent {
+  background: var(--accent);
+  opacity: 0.9;
+}
+
+.mk-dot {
+  width: 2cqw;
+  height: 2cqw;
+  border-radius: 0.5cqw;
+  background: var(--text);
+  opacity: 0.14;
+  flex: none;
+}
+
+.mk-dot--accent {
+  background: var(--accent);
+  opacity: 1;
+}
+
+.mk-pill {
+  width: var(--w, 20%);
+  height: 2.4cqw;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--bg-raised);
+  flex: none;
+}
+
+.mk-chip {
+  width: var(--w, 100%);
+  height: 1.8cqw;
+  border-radius: 999px;
+  background: var(--accent);
+  opacity: 0.22;
+  flex: none;
+}
+
+.mk-chip--quiet {
+  background: var(--text);
+  opacity: 0.12;
+}
+
+.mk-grow {
+  flex: 1;
+}
+
+/* --- Stat tiles ---------------------------------------------------------- */
+
+.mk-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.6cqw;
+}
+
+.mk-tile {
+  border: 1px solid var(--rule);
+  border-radius: 1cqw;
+  background: var(--bg-sunken);
+  padding: 1.4cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 1cqw;
+}
+
+/* --- Charts -------------------------------------------------------------- */
+
+.mk-chart {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.2cqw;
+  padding-top: 1cqw;
+}
+
+.mk-chart__bar {
+  flex: 1;
+  height: var(--h, 50%);
+  border-radius: 0.4cqw 0.4cqw 0 0;
+  background: var(--text);
+  opacity: 0.16;
+}
+
+.mk-chart__bar--accent {
+  background: var(--accent);
+  opacity: 0.72;
+}
+
+/* --- Table --------------------------------------------------------------- */
+
+.mk-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mk-table__row {
+  display: grid;
+  grid-template-columns: 2.4cqw minmax(0, 3fr) minmax(0, 2fr) 8cqw;
+  align-items: center;
+  gap: 1.4cqw;
+  padding-block: 1.3cqw;
+  border-bottom: 1px solid var(--rule);
+}
+
+.mk-table__row:last-child {
+  border-bottom: 0;
+}
+
+.mk-table__row--head .mk-bar {
+  opacity: 0.32;
+}
+
+/* --- POS ----------------------------------------------------------------- */
+
+.mk-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.4cqw;
+  flex: 1;
+  min-height: 0;
+}
+
+.mk-card {
+  border: 1px solid var(--rule);
+  border-radius: 0.8cqw;
+  background: var(--bg-raised);
+  padding: 1.2cqw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.8cqw;
+  min-height: 0;
+}
+
+.mk-card__thumb {
+  flex: 1;
+  min-height: 3cqw;
+  border-radius: 0.6cqw;
+  background: var(--text);
+  opacity: 0.07;
+}
+
+.mk-card--active {
+  border-color: var(--accent);
+}
+
+.mk-card--active .mk-card__thumb {
+  background: var(--accent);
+  opacity: 0.16;
+}
+
+.mk-ticket {
+  flex: 0 0 30cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4cqw;
+}
+
+.mk-ticket__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4cqw;
+  flex: 1;
+  min-height: 0;
+}
+
+.mk-ticket__line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6cqw;
+  align-items: center;
+  gap: 1cqw;
+}
+
+.mk-divider {
+  height: 1px;
+  background: var(--rule);
+  flex: none;
+}
+
+.mk-total {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 8cqw;
+  align-items: center;
+  gap: 1cqw;
+}
+
+.mk-button {
+  height: 3.6cqw;
+  border-radius: 0.8cqw;
+  background: var(--accent);
+  opacity: 0.78;
+  flex: none;
+}
+
+/* --- HRMS calendar ------------------------------------------------------- */
+
+/* Stacked on small plates, side by side once the plate is wide enough that a
+   full-width calendar would stretch into unreadable bands. */
+.mk-split {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8cqw;
+  flex: 1;
+  min-height: 0;
+}
+
+@container (min-width: 44rem) {
+  .mk-split {
+    flex-direction: row;
+  }
+
+  .mk-split > :first-child {
+    flex: 1.5;
+  }
+
+  .mk-split > :last-child {
+    flex: 1;
+  }
+}
+
+.mk-cal {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.9cqw;
+  flex: 1;
+  min-height: 0;
+}
+
+.mk-cal__cell {
+  border: 1px solid var(--rule);
+  border-radius: 0.5cqw;
+  background: var(--bg-raised);
+  min-height: 0;
+}
+
+.mk-cal__cell--on {
+  background: var(--accent);
+  border-color: transparent;
+  opacity: 0.28;
+}
+
+.mk-cal__cell--soft {
+  background: var(--text);
+  border-color: transparent;
+  opacity: 0.08;
+}
+
+.mk-cal__head {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.9cqw;
+}
+
+.mk-cal__head span {
+  height: 0.9cqw;
+  border-radius: 999px;
+  background: var(--text);
+  opacity: 0.14;
+}
+
+.mk-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+  min-height: 0;
+}
+
+.mk-list__row {
+  display: grid;
+  grid-template-columns: 2.4cqw minmax(0, 1fr) 7cqw;
+  align-items: center;
+  gap: 1.2cqw;
+  padding-block: 1.4cqw;
+  border-bottom: 1px solid var(--rule);
+}
+
+.mk-list__row:last-child {
+  border-bottom: 0;
+}
+
+/* --- Small-card tuning --------------------------------------------------- */
+
+@container (max-width: 30rem) {
+  .mk-rail {
+    flex-basis: 10cqw;
+  }
+
+  .mk-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mk-tile:last-child {
+    display: none;
+  }
+}

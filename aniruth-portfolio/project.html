@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" data-page="project">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project — Aniruth Sakthivel</title>
+    <meta name="description" content="A case study from Aniruth Sakthivel's selected work." />
+    <meta name="theme-color" content="#faf9f6" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('pf-theme');
+          if (stored === 'light' || stored === 'dark') {
+            document.documentElement.setAttribute('data-theme', stored);
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap"
+    />
+
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/typography.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/sections.css" />
+    <link rel="stylesheet" href="assets/css/mockups.css" />
+    <link rel="stylesheet" href="assets/css/project.css" />
+
+    <script src="assets/js/data/site.js" defer></script>
+    <script src="assets/js/data/projects.js" defer></script>
+    <script src="assets/js/modules/render.js" defer></script>
+    <script src="assets/js/modules/mockups.js" defer></script>
+    <script src="assets/js/modules/theme.js" defer></script>
+    <script src="assets/js/modules/nav.js" defer></script>
+    <script src="assets/js/modules/reveal.js" defer></script>
+    <script src="assets/js/modules/cursor.js" defer></script>
+    <script src="assets/js/project.js" defer></script>
+  </head>
+
+  <body class="page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="nav" data-nav>
+      <div class="container nav__inner">
+        <a class="nav__brand" href="index.html">
+          <span class="nav__brand-mark" aria-hidden="true">AS</span>
+          <span data-text="name">Aniruth Sakthivel</span>
+          <span class="nav__brand-role" data-text="role">Frontend Developer</span>
+        </a>
+
+        <nav class="nav__menu" aria-label="Sections">
+          <a class="nav__link" href="index.html#work">Work</a>
+          <a class="nav__link" href="index.html#about">About</a>
+          <a class="nav__link" href="index.html#experience">Experience</a>
+          <a class="nav__link" href="index.html#contact">Contact</a>
+        </nav>
+
+        <div class="nav__actions">
+          <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme">
+            <span class="sky" aria-hidden="true">
+              <span class="sky__star"></span>
+              <span class="sky__star"></span>
+              <span class="sky__star"></span>
+              <span class="sky__glow"></span>
+              <span class="sky__body sky__sun">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="4.4" fill="currentColor" />
+                  <path d="M12 2.8v2.1M12 19.1v2.1M2.8 12h2.1M19.1 12h2.1M5.5 5.5l1.5 1.5M17 17l1.5 1.5M18.5 5.5 17 7M7 17l-1.5 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+              </span>
+              <span class="sky__body sky__moon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20.4 14.8A8.6 8.6 0 0 1 9.2 3.6a8.6 8.6 0 1 0 11.2 11.2Z" fill="currentColor" />
+                </svg>
+              </span>
+            </span>
+          </button>
+
+          <a class="btn btn--primary nav__cta" href="index.html#contact">Let&rsquo;s Talk</a>
+
+          <button
+            class="icon-btn nav__toggle"
+            type="button"
+            data-nav-toggle
+            aria-expanded="false"
+            aria-controls="nav-panel"
+            aria-label="Open menu"
+          >
+            <span class="nav__toggle-glyph" aria-hidden="true"><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav__panel" id="nav-panel" data-nav-panel>
+        <div class="container">
+          <a class="nav__panel-link" href="index.html#work">Work <span>01</span></a>
+          <a class="nav__panel-link" href="index.html#about">About <span>02</span></a>
+          <a class="nav__panel-link" href="index.html#experience">Experience <span>03</span></a>
+          <a class="nav__panel-link" href="index.html#contact">Contact <span>04</span></a>
+          <div class="nav__panel-foot">
+            <a class="btn btn--primary" href="index.html#contact">Let&rsquo;s Talk</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" data-project></main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div>
+            <p class="footer__name" data-text="name">Aniruth Sakthivel</p>
+            <p class="footer__desc" data-text="footer.description"></p>
+          </div>
+          <div class="footer__links" data-footer-links></div>
+        </div>
+
+        <div class="footer__bottom">
+          <p>&copy; <span data-year>2026</span> <span data-text="name">Aniruth Sakthivel</span>. All rights reserved.</p>
+          <a class="footer__top-link t-small" href="#main">
+            Back to top
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M6 10V2M2.5 5.5 6 2l3.5 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

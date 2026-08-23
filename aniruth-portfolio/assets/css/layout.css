@@ -1,0 +1,663 @@
+/* =========================================================================
+   Layout — navigation, footer, page shell, cursor.
+   ========================================================================= */
+
+/* `backwards`, not `both`: a forwards-filling transform would leave <body>
+   with an identity matrix, which makes it the containing block for every
+   position: fixed descendant — the nav panel, the cursor and the daylight
+   wash would all anchor to the document instead of the viewport. */
+.page {
+  animation: pf-page-in var(--dur) var(--ease) backwards;
+}
+
+/* -------------------------------------------------------------------------
+   Navigation
+   ------------------------------------------------------------------------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    backdrop-filter var(--dur) var(--ease);
+}
+
+.nav.is-scrolled {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  border-bottom-color: var(--rule);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-6);
+  min-height: var(--nav-h);
+}
+
+/* Wordmark */
+.nav__brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  font-size: var(--t-small);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  padding-block: var(--s-2);
+}
+
+.nav__brand-mark {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  color: var(--accent);
+}
+
+/* The role reads as a byline beside the name — dropped when space is tight. */
+.nav__brand-role {
+  display: none;
+  color: var(--text-faint);
+  font-weight: 400;
+}
+
+@media (min-width: 40rem) {
+  .nav__brand-role {
+    display: inline;
+  }
+}
+
+.nav__menu {
+  display: none;
+  align-items: center;
+  gap: var(--s-6);
+}
+
+.nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--t-small);
+  color: var(--text-muted);
+  padding-block: var(--s-2);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.nav__link::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.nav__link:hover {
+  color: var(--text);
+}
+
+.nav__link[aria-current='true'] {
+  color: var(--text);
+}
+
+.nav__link[aria-current='true']::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.nav__cta {
+  display: none;
+}
+
+/* Icon buttons (theme + mobile toggle) */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  color: var(--text-muted);
+  transition: color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease);
+}
+
+.icon-btn:hover {
+  color: var(--text);
+  background: var(--accent-wash);
+}
+
+.icon-btn svg {
+  width: 1.0625rem;
+  height: 1.0625rem;
+}
+
+/* -------------------------------------------------------------------------
+   Theme toggle — a small patch of sky. The resting state is derived from
+   --is-dark (0 in light, 1 in dark), so one set of rules covers the system
+   preference and the explicit override. Switching plays a one-shot
+   sunset/moonrise: whatever is up sets over the top edge, and its
+   counterpart rises from below.
+   ------------------------------------------------------------------------- */
+
+.sky {
+  position: relative;
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--sky-night) calc(var(--is-dark) * 100%), var(--sky-day));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 10%, transparent);
+  transition: background-color var(--dur-theme) var(--ease-inout);
+}
+
+.icon-btn:hover .sky {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 22%, transparent);
+}
+
+.sky__body {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transition: opacity var(--dur) var(--ease), transform var(--dur-theme) var(--ease-rise);
+}
+
+.sky__body svg {
+  width: 82%;
+  height: 82%;
+}
+
+.sky__sun {
+  color: var(--sun);
+  opacity: calc(1 - var(--is-dark));
+  transform: translateY(calc(var(--is-dark) * -140%)) rotate(calc(var(--is-dark) * 26deg));
+}
+
+.sky__moon {
+  color: var(--moon);
+  opacity: var(--is-dark);
+  transform: translateY(calc((1 - var(--is-dark)) * 140%)) rotate(calc((1 - var(--is-dark)) * -26deg));
+}
+
+.sky__star {
+  position: absolute;
+  width: 1.5px;
+  height: 1.5px;
+  border-radius: 50%;
+  background: var(--star);
+  opacity: calc(var(--star-o, 0.7) * var(--is-dark));
+  transition: opacity var(--dur) var(--ease);
+}
+
+.sky__star:nth-child(1) {
+  top: 24%;
+  left: 20%;
+  --star-o: 0.85;
+}
+
+.sky__star:nth-child(2) {
+  top: 32%;
+  left: 74%;
+  --star-o: 0.55;
+}
+
+.sky__star:nth-child(3) {
+  top: 70%;
+  left: 36%;
+  --star-o: 0.7;
+}
+
+/* Warm band at the horizon — visible only while the sky is changing. */
+.sky__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 118%, var(--sky-glow), transparent 62%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --- The switch itself --------------------------------------------------- */
+
+:root[data-transition] .sky__glow {
+  animation: sky-glow var(--dur-theme) var(--ease-inout) both;
+}
+
+/* The setting body eases evenly so it is still on its way down as the other
+   one clears the horizon — the two briefly share the sky, as they should. */
+:root[data-transition='to-dark'] .sky__sun,
+:root[data-transition='to-light'] .sky__moon {
+  animation: sky-set calc(var(--dur-theme) * 0.8) var(--ease-inout) both;
+}
+
+:root[data-transition='to-dark'] .sky__moon,
+:root[data-transition='to-light'] .sky__sun {
+  animation: sky-rise var(--dur-theme) var(--ease-rise) 130ms both;
+}
+
+:root[data-transition='to-dark'] .sky__star {
+  animation: star-in calc(var(--dur-theme) * 0.6) var(--ease) both;
+  animation-delay: calc(160ms + var(--star-i, 0) * 70ms);
+}
+
+:root[data-transition='to-light'] .sky__star {
+  animation: star-out var(--dur) var(--ease) both;
+}
+
+.sky__star:nth-child(2) {
+  --star-i: 1;
+}
+
+.sky__star:nth-child(3) {
+  --star-i: 2;
+}
+
+@keyframes sky-rise {
+  from {
+    opacity: 0;
+    transform: translateY(140%) rotate(-26deg);
+  }
+  55% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes sky-set {
+  from {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  55% {
+    opacity: 0.85;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-140%) rotate(26deg);
+  }
+}
+
+@keyframes sky-glow {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes star-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: var(--star-o);
+    transform: scale(1);
+  }
+}
+
+@keyframes star-out {
+  from {
+    opacity: var(--star-o);
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Nothing animates on first paint — the stored theme is simply the state. */
+html:not(.theme-ready) .sky,
+html:not(.theme-ready) .sky * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* -------------------------------------------------------------------------
+   Daylight — the page-wide half of the same event. A warm band at the
+   bottom of the viewport lifts on sunrise and sinks on sunset, on exactly
+   the timing the toggle uses, then clears completely.
+   ------------------------------------------------------------------------- */
+
+.daylight {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(140% 72% at 50% 102%, var(--sky-glow), transparent 68%);
+  will-change: opacity, transform;
+}
+
+:root[data-transition='to-dark'] .daylight {
+  animation: daylight-set var(--dur-theme) var(--ease-inout) both;
+}
+
+:root[data-transition='to-light'] .daylight {
+  animation: daylight-rise var(--dur-theme) var(--ease-inout) both;
+}
+
+@keyframes daylight-set {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  42% {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+}
+
+@keyframes daylight-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  48% {
+    opacity: 0.22;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion: no rising or setting, just a short crossfade. */
+@media (prefers-reduced-motion: reduce) {
+  .sky {
+    transition-duration: 200ms !important;
+  }
+
+  .sky__body,
+  .sky__star {
+    transition-duration: 200ms !important;
+    transition-property: opacity !important;
+  }
+
+  .sky__body {
+    transform: none !important;
+  }
+
+  .sky__glow {
+    display: none;
+  }
+
+  :root[data-transition] .sky__body,
+  :root[data-transition] .sky__star,
+  :root[data-transition] .sky__glow,
+  :root[data-transition] .daylight {
+    animation: none !important;
+  }
+
+  .daylight {
+    display: none;
+  }
+
+  /* The page still eases between palettes — a colour fade, not movement. */
+  html.theme-switching body {
+    transition: background-color 200ms linear, color 200ms linear !important;
+  }
+}
+
+/* Mobile toggle glyph — two rules that become an x. */
+.nav__toggle-glyph {
+  position: relative;
+  width: 1.0625rem;
+  height: 0.625rem;
+}
+
+.nav__toggle-glyph span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transition: transform var(--dur) var(--ease), opacity var(--dur-fast) var(--ease);
+}
+
+.nav__toggle-glyph span:first-child {
+  top: 0;
+}
+
+.nav__toggle-glyph span:last-child {
+  bottom: 0;
+}
+
+.nav__toggle[aria-expanded='true'] .nav__toggle-glyph span:first-child {
+  transform: translateY(4.5px) rotate(45deg);
+}
+
+.nav__toggle[aria-expanded='true'] .nav__toggle-glyph span:last-child {
+  transform: translateY(-4.5px) rotate(-45deg);
+}
+
+/* Mobile panel */
+.nav__panel {
+  position: fixed;
+  inset: var(--nav-h) 0 auto 0;
+  max-height: calc(100svh - var(--nav-h));
+  overflow-y: auto;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+  padding: var(--s-4) 0 var(--s-8);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.75rem);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease),
+    visibility 0s linear var(--dur);
+}
+
+.nav__panel.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.nav__panel-link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-4) 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.375rem;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.nav__panel-link span {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  color: var(--text-faint);
+}
+
+.nav__panel-link[aria-current='true'] span {
+  color: var(--accent);
+}
+
+.nav__panel-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-6);
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+@media (min-width: 60rem) {
+  .nav__menu {
+    display: flex;
+  }
+
+  .nav__cta {
+    display: inline-flex;
+  }
+
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav__panel {
+    display: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------------------- */
+
+.footer {
+  border-top: 1px solid var(--rule);
+  padding-block: var(--s-16) var(--s-8);
+}
+
+.footer__grid {
+  display: grid;
+  gap: var(--s-10);
+}
+
+@media (min-width: 48rem) {
+  .footer__grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: var(--s-16);
+  }
+}
+
+.footer__name {
+  font-size: var(--t-h3);
+  letter-spacing: -0.02em;
+}
+
+.footer__desc {
+  margin-top: var(--s-3);
+  max-width: 28rem;
+  color: var(--text-muted);
+  font-size: var(--t-small);
+}
+
+.footer__links {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+}
+
+@media (min-width: 30rem) {
+  .footer__links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-top: var(--s-16);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+  color: var(--text-faint);
+  font-size: var(--t-caption);
+}
+
+.footer__top-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--text-muted);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.footer__top-link:hover {
+  color: var(--text);
+}
+
+.footer__top-link svg {
+  transition: transform var(--dur) var(--ease);
+}
+
+.footer__top-link:hover svg {
+  transform: translateY(-2px);
+}
+
+/* -------------------------------------------------------------------------
+   Cursor — desktop only, injected by JS.
+   ------------------------------------------------------------------------- */
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: var(--t-caption);
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0);
+  transition: width var(--dur) var(--ease), height var(--dur) var(--ease),
+    opacity var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease);
+}
+
+.cursor.is-visible {
+  opacity: 1;
+}
+
+.cursor.is-link {
+  width: 26px;
+  height: 26px;
+  background: var(--accent-wash);
+  border: 1px solid var(--accent);
+}
+
+.cursor.is-label {
+  width: auto;
+  height: auto;
+  padding: var(--s-2) var(--s-4);
+  background: var(--text);
+  border: 0;
+}
+
+.cursor__label {
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+
+.cursor.is-label .cursor__label {
+  opacity: 1;
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor {
+    display: none;
+  }
+}
