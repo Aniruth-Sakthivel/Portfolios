@@ -1,0 +1,38 @@
+@use 'variables' as *;
+
+@mixin container {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 84px 40px;
+}
+
+@mixin mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+@mixin card-lift($shadow: 0 22px 40px -30px oklch(0.24 0.015 260 / 0.55)) {
+  transition: transform 0.25s, box-shadow 0.25s;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow;
+  }
+}
+
+@mixin section-heading-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+@mixin reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
